@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+results/all3_R30.csv*
+.ipynb_checkpoints/

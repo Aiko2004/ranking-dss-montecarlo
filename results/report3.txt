@@ -1,0 +1,277 @@
+== Table 1 (20 methods + reference): tau [95% CI], tau n=50, n=200, spearman, ndcg
+           method    tau  ci_half  tau50  tau200    rho   ndcg   comp   veto
+       WSM-oracle 0.9329   0.0002 0.9328  0.9330 0.9795 0.9912 0.9676 0.8288
+     WMin-learned 0.9157   0.0005 0.8994  0.9319 0.9836 0.9941 0.9292 0.8750
+  Choquet-learned 0.8999   0.0004 0.8828  0.9169 0.9784 0.9895 0.9142 0.8569
+            Ridge 0.8981   0.0005 0.8825  0.9137 0.9734 0.9915 0.9234 0.8222
+    WSM-expert0.3 0.8931   0.0006 0.8934  0.8929 0.9691 0.9871 0.9212 0.8089
+    MIX-expert0.3 0.8679   0.0004 0.8679  0.8679 0.9657 0.9859 0.8634 0.8816
+          MonoGBM 0.8555   0.0005 0.8267  0.8843 0.9629 0.9820 0.8587 0.8457
+    WSM-expert0.6 0.8453   0.0014 0.8454  0.8452 0.9457 0.9776 0.8671 0.7797
+    MIX-expert0.6 0.8426   0.0009 0.8428  0.8425 0.9522 0.9821 0.8376 0.8578
+        GradBoost 0.8193   0.0005 0.7817  0.8568 0.9461 0.9614 0.8218 0.8117
+     RandomForest 0.8177   0.0006 0.7929  0.8425 0.9446 0.9637 0.8230 0.8018
+        WSM-equal 0.8062   0.0009 0.8060  0.8064 0.9211 0.9726 0.8068 0.8044
+      WSM-entropy 0.8048   0.0010 0.8045  0.8051 0.9202 0.9720 0.8051 0.8039
+      TSK-learned 0.8029   0.0006 0.7639  0.8419 0.9314 0.9340 0.8142 0.7691
+   OWA-andness0.5 0.7937   0.0010 0.7935  0.7940 0.9157 0.9715 0.7711 0.8617
+   TOPSIS-entropy 0.7856   0.0012 0.7855  0.7856 0.9085 0.9685 0.7891 0.7751
+   FIS-entropy-K5 0.7757   0.0008 0.7757  0.7758 0.9063 0.9692 0.7750 0.7778
+      FIS-entropy 0.7753   0.0009 0.7752  0.7754 0.9054 0.9653 0.7741 0.7789
+   FIS-andness0.5 0.7460   0.0008 0.7460  0.7460 0.8828 0.9629 0.7263 0.8052
+FIS-andness0.5-K5 0.7398   0.0010 0.7395  0.7400 0.8824 0.9595 0.7253 0.7830
+   FIS-WangMendel 0.7388   0.0015 0.7029  0.7747 0.8791 0.9399 0.7479 0.7114
+max CI half-width: 0.0015 | NDCG range: 0.934 0.994
+
+== tau by form x ntrain (selected)
+func            concave        interaction        linear          veto       
+ntrain              50     200         50     200    50     200    50     200
+method                                                                       
+WMin-learned      0.903  0.933       0.917  0.949  0.918  0.956  0.860  0.890
+Choquet-learned   0.887  0.921       0.900  0.935  0.902  0.940  0.842  0.872
+Ridge             0.890  0.922       0.913  0.946  0.914  0.955  0.812  0.832
+MonoGBM           0.832  0.886       0.830  0.886  0.832  0.887  0.813  0.878
+GradBoost         0.785  0.858       0.788  0.857  0.785  0.858  0.768  0.855
+RandomForest      0.800  0.845       0.800  0.844  0.802  0.847  0.769  0.834
+OWA-andness0.5    0.772  0.771       0.780  0.784  0.761  0.759  0.861  0.862
+WSM-entropy       0.789  0.788       0.820  0.824  0.806  0.804  0.803  0.804
+WSM-expert0.3     0.909  0.911       0.923  0.921  0.932  0.931  0.809  0.809
+WSM-expert0.6     0.859  0.861       0.868  0.866  0.876  0.872  0.778  0.781
+MIX-expert0.3     0.869  0.869       0.868  0.868  0.854  0.852  0.881  0.882
+MIX-expert0.6     0.843  0.843       0.841  0.840  0.830  0.827  0.857  0.859
+grp               comp          veto       
+ntrain             50     200    50     200
+method                                     
+WMin-learned     0.913  0.946  0.860  0.890
+Choquet-learned  0.896  0.932  0.842  0.872
+Ridge            0.906  0.941  0.812  0.832
+MonoGBM          0.831  0.886  0.813  0.878
+GradBoost        0.786  0.857  0.768  0.855
+RandomForest     0.801  0.845  0.769  0.834
+OWA-andness0.5   0.771  0.771  0.861  0.862
+WSM-entropy      0.805  0.805  0.803  0.804
+WSM-expert0.3    0.922  0.921  0.809  0.809
+WSM-expert0.6    0.868  0.867  0.778  0.781
+MIX-expert0.3    0.864  0.863  0.881  0.882
+MIX-expert0.6    0.838  0.837  0.857  0.859
+
+== Best method per scenario; candidates = 8 unsupervised + 8 learned (no ablations, expert, reference)
+WMin-learned       45.8
+Ridge              21.9
+OWA-andness0.5     11.2
+Choquet-learned     7.3
+WSM-equal           5.7
+MonoGBM             4.9
+GradBoost           1.6
+WSM-entropy         1.3
+TSK-learned         0.3
+ties: 0 | learned best: 0.818 | best learned > best unsup: 0.818
+WMin-learned > Ridge: 0.643 > Choquet: 0.893
+veto n=50: WMin0.5 > best learned: 0.562; WMin0.5 > best learned excl. WMin-learned: 0.646
+   comp n=50: Ridge > WSM-expert0.3: 0.389; WMin-learned > WSM-expert0.3: 0.417
+   comp n=50: Ridge > WSM-expert0.6: 0.708; WMin-learned > WSM-expert0.6: 0.694
+   veto n=50: MIX-expert0.3 > best learned: 0.750
+veto n=200: WMin0.5 > best learned: 0.271; WMin0.5 > best learned excl. WMin-learned: 0.312
+   comp n=200: Ridge > WSM-expert0.3: 0.653; WMin-learned > WSM-expert0.3: 0.701
+   comp n=200: Ridge > WSM-expert0.6: 0.875; WMin-learned > WSM-expert0.6: 0.882
+   veto n=200: MIX-expert0.3 > best learned: 0.354
+learned lambda (median, IQR) by form: {'concave': (np.float64(0.02), np.float64(0.0), np.float64(0.14)), 'interaction': (np.float64(0.0), np.float64(0.0), np.float64(0.07)), 'linear': (np.float64(0.0), np.float64(0.0), np.float64(0.03)), 'veto': (np.float64(0.22), np.float64(0.0), np.float64(0.45))}
+
+== Ties in the true utility (share of tied test pairs)
+by marg: {'skewed': 0.0, 'sparse': 0.14, 'uniform': 0.0}
+rho    0.0    0.6
+m                
+3    0.119  0.248
+5    0.028  0.165
+
+== Veto x marginal distribution x ntrain
+marg            skewed        sparse        uniform       
+ntrain             50     200    50     200     50     200
+method                                                    
+WSM-entropy      0.776  0.778  0.879  0.881   0.756  0.755
+OWA-andness0.5   0.861  0.862  0.882  0.884   0.841  0.840
+MIX-expert0.3    0.878  0.879  0.900  0.901   0.865  0.865
+WMin-learned     0.856  0.889  0.885  0.905   0.840  0.876
+Choquet-learned  0.846  0.887  0.877  0.888   0.803  0.841
+MonoGBM          0.793  0.862  0.868  0.913   0.777  0.859
+Ridge            0.784  0.800  0.887  0.905   0.767  0.790
+FIS-entropy      0.755  0.757  0.861  0.862   0.719  0.720
+FIS-andness0.5   0.799  0.801  0.826  0.826   0.790  0.790
+WMin0.5 - WSM by marg: {'skewed': 0.085, 'sparse': 0.004, 'uniform': 0.085}
+   n=50 WMin0.5 > best learned by marg: {'skewed': 0.562, 'sparse': 0.562, 'uniform': 0.562}
+   n=200 WMin0.5 > best learned by marg: {'skewed': 0.25, 'sparse': 0.25, 'uniform': 0.312}
+
+== lambda sweep (crisp WMin, TSK equal centres, Mamdani K=3)
+          comp                  veto              
+family Mamdani    TSK   WMin Mamdani    TSK   WMin
+lam                                               
+0.00     0.774  0.805  0.805   0.779  0.804  0.804
+0.25     0.747  0.804  0.799   0.782  0.825  0.840
+0.50     0.726  0.795  0.771   0.805  0.842  0.862
+0.75     0.644  0.780  0.728   0.733  0.858  0.847
+1.00     0.562  0.560  0.486   0.663  0.671  0.604
+
+== Monotonicity of Mamdani output (reps 0-4, 1920 problems): z_j + 0.05
+lambda=0.0: share of (alternative, criterion) increments with lower output: 0.0568; problems with any violation: 1.000; max drop (0-100 scale): median 1.21, max 2.44
+lambda=0.5: share of (alternative, criterion) increments with lower output: 0.0659; problems with any violation: 1.000; max drop (0-100 scale): median 1.44, max 2.45
+
+== Sensitivity: change in tau when one factor changes level (mean over other factors)
+                               WSM-entropy  FIS-entropy  OWA-andness0.5  Ridge  WMin-learned  Choquet-learned  RandomForest
+factor                                                                                                                     
+rho: 0.0->0.6                        0.161        0.176           0.156  0.060         0.032            0.042         0.067
+marg: uniform->sparse                0.085        0.096           0.100  0.023         0.000            0.010         0.051
+marg: uniform->skewed                0.001        0.002          -0.004  0.000         0.002            0.006        -0.004
+m: 3->5                             -0.036       -0.037          -0.038 -0.033        -0.029           -0.033        -0.035
+wconc: balanced->concentrated       -0.155       -0.131          -0.134 -0.014        -0.005           -0.001         0.020
+noise: 0.0->0.2                      0.002        0.002           0.002 -0.027        -0.033           -0.038        -0.073
+ntrain: 50->200                      0.001        0.000           0.000  0.031         0.032            0.034         0.050
+
+== ANOVA (unit = 11,520 problem instances; 7 factors + all two-way interactions): partial eta^2, top 3
+WSM-entropy rho:0.63; wconc:0.61; marg:0.30
+FIS-entropy rho:0.74; wconc:0.61; marg:0.43
+Ridge func:0.60; rho:0.40; func:rho:0.38
+WMin-learned func:0.41; noise:0.24; ntrain:0.23
+RandomForest noise:0.46; rho:0.42; marg:0.29
+
+== Learning curves: n* (mean curve) with bootstrap CIs; per-scenario break-even; risk percentiles
+-- Ridge
+linear       n*=11.6 scenario-bootstrap CI=[ 8.7 14.8]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.833; p10 diff at 10/20/50: -0.161/-0.054/-0.006; plateau(500)=0.967
+concave      n*=11.3 scenario-bootstrap CI=[ 9.7 15.1]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.854; p10 diff at 10/20/50: -0.130/-0.047/-0.009; plateau(500)=0.929
+interaction  n*=13.5 scenario-bootstrap CI=[10.6 18.5]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.812; p10 diff at 10/20/50: -0.146/-0.069/-0.015; plateau(500)=0.956
+veto         n*=inf scenario-bootstrap CI=-; first grid n with gain: median=50.0, never=0.56; share gain>0 at 50: 0.250; p10 diff at 10/20/50: -0.302/-0.212/-0.156; plateau(500)=0.837
+compensatory pooled (N=144): first n median=20.0, IQR=10.0-50.0, p90=92.50000000000043; gain>0 at 50: 0.833 (120/144); sigma=0: 0.931 (67/72); sigma=0.2: 0.736 (53/72); p10 diff at 10/20/50: -0.146/-0.055/-0.012
+-- WMin-learned
+linear       n*=9.6 scenario-bootstrap CI=[ 6.8 14. ]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.812; p10 diff at 10/20/50: -0.131/-0.071/-0.022; plateau(500)=0.967
+concave      n*=8.9 scenario-bootstrap CI=[ 7.3 11.6]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.833; p10 diff at 10/20/50: -0.122/-0.067/-0.018; plateau(500)=0.941
+interaction  n*=11.9 scenario-bootstrap CI=[ 8.6 16.9]; first grid n with gain: median=20.0, never=0.00; share gain>0 at 50: 0.771; p10 diff at 10/20/50: -0.154/-0.101/-0.039; plateau(500)=0.959
+veto         n*=51.6 scenario-bootstrap CI=[37.9 79.6]; first grid n with gain: median=50.0, never=0.17; share gain>0 at 50: 0.438; p10 diff at 10/20/50: -0.177/-0.112/-0.059; plateau(500)=0.898
+compensatory pooled (N=144): first n median=20.0, IQR=10.0-50.0, p90=150.0; gain>0 at 50: 0.806 (116/144); sigma=0: 0.875 (63/72); sigma=0.2: 0.736 (53/72); p10 diff at 10/20/50: -0.133/-0.085/-0.024
+
+== Shape sensitivity (veto: theta, beta; interaction: gamma); identity check with base
+identity max |diff| (base vs main run): 0.0
+variant           base        beta=0.0        beta=0.5        theta=0.15        theta=0.4       
+ntrain             50     200      50     200      50     200        50     200       50     200
+method                                                                                          
+WSM-entropy      0.804  0.806    0.596  0.592    0.819  0.821      0.790  0.792     0.841  0.842
+OWA-andness0.5   0.862  0.863    0.670  0.667    0.848  0.850      0.833  0.835     0.874  0.875
+FIS-andness0.5   0.806  0.806    0.633  0.629    0.792  0.792      0.767  0.767     0.816  0.815
+WMin-learned     0.862  0.891    0.620  0.641    0.882  0.910      0.850  0.880     0.877  0.905
+Choquet-learned  0.844  0.873    0.596  0.619    0.867  0.897      0.826  0.853     0.865  0.897
+MonoGBM          0.812  0.879    0.569  0.624    0.820  0.882      0.798  0.873     0.818  0.882
+Ridge            0.813  0.833    0.536  0.548    0.852  0.873      0.815  0.837     0.844  0.864
+   veto base n=50: WMin0.5-WSM=+0.058; Mamdani(0.5)-WMin0.5=-0.056; WMin0.5 > best learned: 0.479; best mean: WMin-learned
+   veto base n=200: WMin0.5-WSM=+0.058; Mamdani(0.5)-WMin0.5=-0.058; WMin0.5 > best learned: 0.250; best mean: WMin-learned
+   veto beta=0.0 n=50: WMin0.5-WSM=+0.074; Mamdani(0.5)-WMin0.5=-0.037; WMin0.5 > best learned: 0.562; best mean: OWA-andness0.5
+   veto beta=0.0 n=200: WMin0.5-WSM=+0.074; Mamdani(0.5)-WMin0.5=-0.037; WMin0.5 > best learned: 0.333; best mean: OWA-andness0.5
+   veto beta=0.5 n=50: WMin0.5-WSM=+0.029; Mamdani(0.5)-WMin0.5=-0.057; WMin0.5 > best learned: 0.354; best mean: WMin-learned
+   veto beta=0.5 n=200: WMin0.5-WSM=+0.029; Mamdani(0.5)-WMin0.5=-0.058; WMin0.5 > best learned: 0.125; best mean: WMin-learned
+   veto theta=0.15 n=50: WMin0.5-WSM=+0.043; Mamdani(0.5)-WMin0.5=-0.066; WMin0.5 > best learned: 0.396; best mean: WMin-learned
+   veto theta=0.15 n=200: WMin0.5-WSM=+0.043; Mamdani(0.5)-WMin0.5=-0.068; WMin0.5 > best learned: 0.146; best mean: WMin-learned
+   veto theta=0.4 n=50: WMin0.5-WSM=+0.034; Mamdani(0.5)-WMin0.5=-0.058; WMin0.5 > best learned: 0.500; best mean: WMin-learned
+   veto theta=0.4 n=200: WMin0.5-WSM=+0.033; Mamdani(0.5)-WMin0.5=-0.060; WMin0.5 > best learned: 0.250; best mean: WMin-learned
+variant           base        gamma=2.0        gamma=8.0       
+ntrain             50     200       50     200       50     200
+method                                                         
+WSM-entropy      0.824  0.826     0.817  0.820     0.830  0.831
+OWA-andness0.5   0.783  0.785     0.775  0.778     0.792  0.793
+FIS-andness0.5   0.736  0.737     0.729  0.731     0.744  0.745
+WMin-learned     0.918  0.950     0.920  0.953     0.914  0.945
+Choquet-learned  0.899  0.935     0.901  0.937     0.896  0.932
+MonoGBM          0.831  0.885     0.832  0.885     0.830  0.884
+Ridge            0.915  0.948     0.917  0.952     0.911  0.942
+   interaction base n=50: WMin0.5-WSM=-0.041; Mamdani(0.5)-WMin0.5=-0.047; WMin0.5 > best learned: 0.083; best mean: WMin-learned
+   interaction base n=200: WMin0.5-WSM=-0.040; Mamdani(0.5)-WMin0.5=-0.048; WMin0.5 > best learned: 0.021; best mean: WMin-learned
+   interaction gamma=2.0 n=50: WMin0.5-WSM=-0.042; Mamdani(0.5)-WMin0.5=-0.046; WMin0.5 > best learned: 0.062; best mean: WMin-learned
+   interaction gamma=2.0 n=200: WMin0.5-WSM=-0.042; Mamdani(0.5)-WMin0.5=-0.047; WMin0.5 > best learned: 0.021; best mean: WMin-learned
+   interaction gamma=8.0 n=50: WMin0.5-WSM=-0.038; Mamdani(0.5)-WMin0.5=-0.048; WMin0.5 > best learned: 0.083; best mean: WMin-learned
+   interaction gamma=8.0 n=200: WMin0.5-WSM=-0.037; Mamdani(0.5)-WMin0.5=-0.049; WMin0.5 > best learned: 0.021; best mean: WMin-learned
+
+== Real data (20 splits): tau_b, Somers' D on pairs with different grades
+-- n=200 kendall mean
+dataset              Car    ERA    ESL    LEV    SWD
+method                                              
+WMin-learned       0.597  0.445  0.832  0.618  0.495
+Ridge              0.572  0.448  0.830  0.618  0.494
+Choquet-learned    0.624  0.438  0.831  0.605  0.491
+MonoGBM            0.647  0.416  0.827  0.598  0.500
+RandomForest       0.706  0.375  0.811  0.568  0.466
+GradBoost          0.644  0.396  0.825  0.593  0.486
+WSM-equal          0.519  0.398  0.823  0.589  0.482
+WSM-entropy        0.519  0.341  0.804  0.548  0.449
+TOPSIS-entropy     0.541  0.278  0.783  0.508  0.399
+OWA-andness0.5     0.538  0.311  0.803  0.457  0.451
+FIS-entropy        0.503  0.348  0.786  0.532  0.432
+FIS-andness0.5     0.458  0.295  0.792  0.451  0.324
+FIS-WangMendel     0.444  0.388  0.801  0.526  0.409
+TSK-learned        0.550  0.399  0.803  0.561    NaN
+FIS-entropy-K5     0.516  0.336  0.784  0.541    NaN
+FIS-andness0.5-K5  0.371  0.292  0.784  0.403    NaN
+-- n=200 somers_d mean
+dataset              Car    ERA    ESL    LEV    SWD
+method                                              
+WMin-learned       0.883  0.474  0.926  0.728  0.602
+Ridge              0.847  0.477  0.924  0.728  0.601
+Choquet-learned    0.924  0.466  0.924  0.713  0.598
+MonoGBM            0.957  0.443  0.919  0.704  0.608
+RandomForest       0.968  0.399  0.902  0.669  0.567
+GradBoost          0.953  0.422  0.918  0.698  0.591
+WSM-equal          0.756  0.423  0.912  0.651  0.580
+WSM-entropy        0.768  0.363  0.894  0.646  0.547
+TOPSIS-entropy     0.801  0.296  0.871  0.599  0.485
+OWA-andness0.5     0.796  0.332  0.893  0.538  0.548
+FIS-entropy        0.724  0.370  0.871  0.624  0.501
+FIS-andness0.5     0.604  0.312  0.878  0.526  0.332
+FIS-WangMendel     0.648  0.413  0.889  0.619  0.487
+TSK-learned        0.800  0.425  0.893  0.661    NaN
+FIS-entropy-K5     0.724  0.357  0.870  0.564    NaN
+FIS-andness0.5-K5  0.490  0.308  0.869  0.387    NaN
+-- n=200 SD of tau over splits (max over datasets): {'WMin-learned': 0.014, 'Ridge': 0.015, 'Choquet-learned': 0.017, 'MonoGBM': 0.018, 'RandomForest': 0.033, 'GradBoost': 0.022, 'WSM-equal': 0.013, 'WSM-entropy': 0.016, 'TOPSIS-entropy': 0.025, 'OWA-andness0.5': 0.014, 'FIS-entropy': 0.017, 'FIS-andness0.5': 0.046, 'FIS-WangMendel': 0.032, 'TSK-learned': 0.021, 'FIS-entropy-K5': 0.025, 'FIS-andness0.5-K5': 0.038}
+-- n=200 tau_max: {'Car': 0.675, 'ERA': 0.929, 'ESL': 0.896, 'LEV': 0.844, 'SWD': 0.819}
+   kendall: best learned {'Car': 'RandomForest', 'ERA': 'Ridge', 'ESL': 'WMin-learned', 'LEV': 'Ridge', 'SWD': 'MonoGBM'}; best unsup {'Car': 'TOPSIS-entropy', 'ERA': 'WSM-equal', 'ESL': 'WSM-equal', 'LEV': 'WSM-equal', 'SWD': 'WSM-equal'}; gain {'Car': 0.165, 'ERA': 0.05, 'ESL': 0.009, 'LEV': 0.029, 'SWD': 0.018}; splits where best learned (per split) > best unsup: {'Car': 20, 'ERA': 20, 'ESL': 19, 'LEV': 20, 'SWD': 18}
+   kendall: splits where mean-best learned > mean-best unsup: {'Car': 20, 'ERA': 20, 'ESL': 19, 'LEV': 20, 'SWD': 17}
+   somers_d: best learned {'Car': 'RandomForest', 'ERA': 'Ridge', 'ESL': 'WMin-learned', 'LEV': 'Ridge', 'SWD': 'MonoGBM'}; best unsup {'Car': 'TOPSIS-entropy', 'ERA': 'WSM-equal', 'ESL': 'WSM-equal', 'LEV': 'WSM-equal', 'SWD': 'WSM-equal'}; gain {'Car': 0.167, 'ERA': 0.054, 'ESL': 0.014, 'LEV': 0.077, 'SWD': 0.028}; splits where best learned (per split) > best unsup: {'Car': 20, 'ERA': 20, 'ESL': 20, 'LEV': 20, 'SWD': 19}
+   somers_d: splits where mean-best learned > mean-best unsup: {'Car': 20, 'ERA': 20, 'ESL': 20, 'LEV': 20, 'SWD': 19}
+-- n=50 kendall mean
+dataset              Car    ERA    ESL    LEV    SWD
+method                                              
+WMin-learned       0.581  0.430  0.823  0.601  0.460
+Ridge              0.546  0.432  0.822  0.605  0.442
+Choquet-learned    0.601  0.413  0.820  0.585  0.456
+MonoGBM            0.589  0.378  0.801  0.564  0.450
+RandomForest       0.574  0.355  0.792  0.540  0.422
+GradBoost          0.575  0.319  0.793  0.530  0.395
+WSM-equal          0.520  0.394  0.826  0.590  0.484
+WSM-entropy        0.520  0.339  0.811  0.549  0.450
+TOPSIS-entropy     0.543  0.275  0.791  0.511  0.397
+OWA-andness0.5     0.539  0.310  0.810  0.457  0.451
+FIS-entropy        0.505  0.345  0.789  0.532  0.432
+FIS-andness0.5     0.459  0.296  0.799  0.457  0.333
+FIS-WangMendel     0.486  0.353  0.780  0.500  0.414
+TSK-learned        0.389  0.321  0.767  0.459    NaN
+FIS-entropy-K5     0.514  0.334  0.792  0.540    NaN
+FIS-andness0.5-K5  0.386  0.292  0.792  0.405    NaN
+-- n=50 somers_d mean
+dataset              Car    ERA    ESL    LEV    SWD
+method                                              
+WMin-learned       0.858  0.457  0.915  0.709  0.560
+Ridge              0.807  0.460  0.914  0.713  0.537
+Choquet-learned    0.887  0.440  0.911  0.689  0.555
+MonoGBM            0.870  0.401  0.885  0.663  0.548
+RandomForest       0.849  0.378  0.881  0.637  0.513
+GradBoost          0.850  0.339  0.881  0.625  0.481
+WSM-equal          0.756  0.419  0.911  0.652  0.584
+WSM-entropy        0.769  0.361  0.902  0.647  0.548
+TOPSIS-entropy     0.803  0.293  0.880  0.602  0.483
+OWA-andness0.5     0.797  0.330  0.901  0.539  0.549
+FIS-entropy        0.726  0.368  0.873  0.625  0.499
+FIS-andness0.5     0.609  0.312  0.887  0.530  0.337
+FIS-WangMendel     0.704  0.376  0.864  0.589  0.486
+TSK-learned        0.449  0.341  0.852  0.540    NaN
+FIS-entropy-K5     0.724  0.355  0.879  0.561    NaN
+FIS-andness0.5-K5  0.510  0.308  0.879  0.396    NaN
+-- n=50 SD of tau over splits (max over datasets): {'WMin-learned': 0.028, 'Ridge': 0.039, 'Choquet-learned': 0.029, 'MonoGBM': 0.033, 'RandomForest': 0.049, 'GradBoost': 0.045, 'WSM-equal': 0.005, 'WSM-entropy': 0.01, 'TOPSIS-entropy': 0.015, 'OWA-andness0.5': 0.008, 'FIS-entropy': 0.012, 'FIS-andness0.5': 0.045, 'FIS-WangMendel': 0.043, 'TSK-learned': 0.052, 'FIS-entropy-K5': 0.025, 'FIS-andness0.5-K5': 0.029}
+-- n=50 tau_max: {'Car': 0.676, 'ERA': 0.928, 'ESL': 0.896, 'LEV': 0.844, 'SWD': 0.818}
+   kendall: best learned {'Car': 'Choquet-learned', 'ERA': 'Ridge', 'ESL': 'WMin-learned', 'LEV': 'Ridge', 'SWD': 'WMin-learned'}; best unsup {'Car': 'TOPSIS-entropy', 'ERA': 'WSM-equal', 'ESL': 'WSM-equal', 'LEV': 'WSM-equal', 'SWD': 'WSM-equal'}; gain {'Car': 0.057, 'ERA': 0.039, 'ESL': -0.003, 'LEV': 0.015, 'SWD': -0.024}; splits where best learned (per split) > best unsup: {'Car': 20, 'ERA': 20, 'ESL': 13, 'LEV': 18, 'SWD': 6}
+   kendall: splits where mean-best learned > mean-best unsup: {'Car': 20, 'ERA': 20, 'ESL': 10, 'LEV': 16, 'SWD': 4}
+   somers_d: best learned {'Car': 'Choquet-learned', 'ERA': 'Ridge', 'ESL': 'WMin-learned', 'LEV': 'Ridge', 'SWD': 'WMin-learned'}; best unsup {'Car': 'TOPSIS-entropy', 'ERA': 'WSM-equal', 'ESL': 'WSM-equal', 'LEV': 'WSM-equal', 'SWD': 'WSM-equal'}; gain {'Car': 0.084, 'ERA': 0.041, 'ESL': 0.003, 'LEV': 0.06, 'SWD': -0.024}; splits where best learned (per split) > best unsup: {'Car': 20, 'ERA': 20, 'ESL': 16, 'LEV': 20, 'SWD': 8}
+   somers_d: splits where mean-best learned > mean-best unsup: {'Car': 20, 'ERA': 20, 'ESL': 13, 'LEV': 20, 'SWD': 5}

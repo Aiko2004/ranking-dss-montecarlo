@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper below."
+title: "Code and data: Choosing the Ranking Method for Decision Support Systems"
+authors:
+  - family-names: Kerimkhulle
+    given-names: Seyit
+    affiliation: "L.N. Gumilyov Eurasian National University"
+  - family-names: Kakim
+    given-names: Aikyn
+    affiliation: "L.N. Gumilyov Eurasian National University"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-23"
+preferred-citation:
+  type: conference-paper
+  title: "Choosing the Ranking Method for Decision Support Systems: A Monte Carlo Comparison of Data-Driven Fuzzy Inference, Linear Aggregation and Machine Learning"
+  authors:
+    - family-names: Kerimkhulle
+      given-names: Seyit
+    - family-names: Kakim
+      given-names: Aikyn
+  year: 2026

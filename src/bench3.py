@@ -1,0 +1,98 @@
+"""Реальные данные (вторая рецензия): всё из bench2 + обучаемый WMin_lambda и метрика,
+не вознаграждающая связи: D Сомерса по парам с разными оценками, D = (N_c - N_d) / N_{y_i != y_j} = 2C - 1,
+где C — индекс согласованности Харрелла (связи оценок метода считаются как 1/2).
+
+Запуск: python bench3.py BENCH_DIR OUT.csv REPS
+"""
+from __future__ import annotations
+
+import sys
+import warnings
+
+import numpy as np
+import pandas as pd
+from joblib import Parallel, delayed
+from scipy.stats import kendalltau, spearmanr
+
+sys.path.insert(0, sys.path[0])
+import methods as M  # noqa: E402
+import methods2 as M2  # noqa: E402
+from bench import DATASETS, load  # noqa: E402
+from simulate import ndcg_top  # noqa: E402
+from simulate3 import wmin_learned  # noqa: E402
+
+warnings.filterwarnings("ignore")
+
+
+def tau_max(y):
+    """Максимум τ_b для ранжирования без связей при связанной порядковой оценке."""
+    n0 = len(y) * (len(y) - 1) / 2
+    _, cnt = np.unique(y, return_counts=True)
+    n1 = (cnt * (cnt - 1) / 2).sum()
+    return float(np.sqrt((n0 - n1) / n0))
+
+
+def somers_d(y, s):
+    """D Сомерса по парам с разными оценками y (связи s дают 0)."""
+    dy = np.sign(y[:, None] - y[None, :])
+    ds = np.sign(s[:, None] - s[None, :])
+    mask = dy != 0
+    return float((dy * ds)[mask].sum() / mask.sum())
+
+
+def run(key, X, y, ntrain, rep):
+    rng = np.random.default_rng(1000 * rep + ntrain)
+    idx = rng.permutation(len(y))
+    tr, te = idx[:ntrain], idx[ntrain:]
+    m = X.shape[1]
+    Ztr, lo, hi = M.minmax(X[tr])
+    Zte_tr, _, _ = M.minmax(X[te], lo, hi)
+    Zte, _, _ = M.minmax(X[te])
+    w = M.entropy_weights(Zte)
+    w = w / w.sum()
+    res = {
+        "WSM-entropy": M.wsm(Zte, w),
+        "WSM-equal": M.wsm(Zte, np.full(m, 1 / m)),
+        "TOPSIS-entropy": M.topsis(Zte, w),
+        "FIS-entropy": M.fis_unsupervised(Zte, "entropy", "fcm"),
+        "FIS-andness0.5": M.fis_unsupervised(Zte, "entropy", "fcm", lam=0.5),
+        "OWA-andness0.5": M.owa_crisp(Zte, w, 0.5),
+        "TSK-centre-unif-c": M2.tsk0(Zte, w, 3, 0.0, "centre", "uniform"),
+        "TSK-centre-unif-n": M2.tsk0(Zte, w, 3, 0.5, "centre", "uniform"),
+        "FIS-WangMendel": M.fis_wang_mendel(Ztr, y[tr], Zte_tr),
+        "TSK-learned": M2.tsk_learned(Ztr, y[tr], Zte_tr) if m <= 6 else np.full(len(te), np.nan),
+        "Choquet-learned": M2.choquet_learned(Ztr, y[tr], Zte_tr),
+        "MonoGBM": M2.mono_gbm(Ztr, y[tr], Zte_tr, rep),
+        "WMin-learned": wmin_learned(Ztr, y[tr], Zte_tr)[0],
+    }
+    if m <= 6:
+        res["FIS-entropy-K5"] = M.fis_unsupervised(Zte, "entropy", "fcm", K=5)
+        res["FIS-andness0.5-K5"] = M.fis_unsupervised(Zte, "entropy", "fcm", K=5, lam=0.5)
+    for name, mdl in M.ml_models(rep).items():
+        mdl.fit(Ztr, y[tr])
+        res[name] = mdl.predict(Zte_tr)
+    tm = tau_max(y[te])
+    out = []
+    for meth, sc in res.items():
+        if np.isnan(sc).all():
+            continue
+        out.append({"dataset": key, "ntrain": ntrain, "rep": rep, "method": meth,
+                    "kendall": kendalltau(y[te], sc).statistic,  # τ_b
+                    "spearman": spearmanr(y[te], sc).statistic,
+                    "ndcg10": ndcg_top(y[te], sc), "somers_d": somers_d(y[te], sc), "tau_max": tm})
+    return out
+
+
+def main(bench_dir, out_csv, reps):
+    jobs = []
+    for key in DATASETS:
+        X, y = load(bench_dir, key)
+        for ntr in (50, 200):
+            for r in range(reps):
+                jobs.append((key, X, y, ntr, r))
+    rows = Parallel(n_jobs=2)(delayed(run)(*j) for j in jobs)
+    pd.DataFrame([x for r in rows for x in r]).to_csv(out_csv, index=False)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1], sys.argv[2], int(sys.argv[3]))
