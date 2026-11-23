@@ -1,5 +1,7 @@
 # Monte Carlo comparison of ranking methods for decision support systems
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24465188.svg)](https://doi.org/10.5281/zenodo.24465188)
+
 Code, seeds, raw results and supplementary material for the paper
 "Choosing the Ranking Method for Decision Support Systems: A Monte Carlo Comparison of
 Data-Driven Fuzzy Inference, Linear Aggregation and Machine Learning" (Kerimkhulle S., Kakim A.; submitted).
